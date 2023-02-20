@@ -1,18 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Backend\Pages\Chat\Chat;
+use App\Http\Livewire\Backend\Pages\Dashboard\Dashboard;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
-Route::get('/', function () {
-    return view('welcome');
+## Backend routes
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/', Dashboard::class)->name('dashboard');
+    Route::get('/chat', Chat::class)->name('chat');
 });
+
+
+## Other routes
+Route::redirect('/', 'admin');
